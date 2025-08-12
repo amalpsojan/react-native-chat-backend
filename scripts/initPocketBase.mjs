@@ -33,13 +33,20 @@ async function ensureRooms() {
   const exists = await getCollectionByName("rooms");
   if (exists) {
     console.log("Collection rooms exists");
-    return exists;
+    // Ensure rules allow authenticated users to list/view rooms
+    await pb.collections.update(exists.id, {
+      listRule: '@request.auth.id != ""',
+      viewRule: '@request.auth.id != ""',
+    });
+    return await getCollectionByName("rooms");
   }
   console.log("Creating collection rooms");
   return pb.collections.create({
     name: "rooms",
     type: "base",
     fields: [{ name: "title", type: "text", required: true }],
+    listRule: '@request.auth.id != ""',
+    viewRule: '@request.auth.id != ""',
   });
 }
 
@@ -47,7 +54,13 @@ async function ensureMessages(roomsId) {
   const exists = await getCollectionByName("messages");
   if (exists) {
     console.log("Collection messages exists");
-    return exists;
+    // Ensure rules allow authenticated users to list/view/create messages
+    await pb.collections.update(exists.id, {
+      listRule: '@request.auth.id != ""',
+      viewRule: '@request.auth.id != ""',
+      createRule: '@request.auth.id != ""',
+    });
+    return await getCollectionByName("messages");
   }
   console.log("Creating collection messages");
   return pb.collections.create({
@@ -71,6 +84,9 @@ async function ensureMessages(roomsId) {
       { name: "refType", type: "text" },
       { name: "refContent", type: "json" },
     ],
+    listRule: '@request.auth.id != ""',
+    viewRule: '@request.auth.id != ""',
+    createRule: '@request.auth.id != ""',
   });
 }
 
