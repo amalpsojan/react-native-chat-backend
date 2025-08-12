@@ -1,0 +1,42 @@
+[
+  {
+    "id": "seed-1",
+    "from": "user-2",
+    "type": "text",
+    "content": { "text": "Hello from PocketBase seed" },
+    "createdAtMs": 1704110400000,
+    "status": "sent"
+  },
+  {
+    "id": "seed-2",
+    "from": "user-1",
+    "type": "text",
+    "content": { "text": "Reply from user-1" },
+    "createdAtMs": 1704110460000,
+    "status": "delivered"
+  },
+  {
+    "id": "seed-3",
+    "from": "user-2",
+    "type": "text",
+    "content": { "text": "PocketBase is set up." },
+    "createdAtMs": 1704110520000,
+    "status": "read"
+  },
+  {
+    "id": "seed-4",
+    "from": "user-1",
+    "type": "text",
+    "content": { "text": "Great!" },
+    "createdAtMs": 1704110580000,
+    "status": "sent"
+  },
+  {
+    "id": "seed-5",
+    "from": "user-2",
+    "type": "text",
+    "content": { "text": "Let's continue." },
+    "createdAtMs": 1704110640000,
+    "status": "sent"
+  }
+]

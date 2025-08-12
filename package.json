@@ -1,0 +1,21 @@
+{
+  "name": "chatapp-backend-pocketbase",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "pb:serve": "dotenv -e .env -- node scripts/serve.mjs",
+    "init:schema": "dotenv -e .env -- node scripts/initPocketBase.mjs",
+    "seed": "dotenv -e .env -- node scripts/seed.mjs",
+    "client:alice": "dotenv -e .env -- node scripts/client.mjs alice@example.com secret123 realtime-test",
+    "client:bob": "dotenv -e .env -- node scripts/client.mjs bob@example.com secret123 realtime-test"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "eventsource": "^4.0.0",
+    "pocketbase": "^0.21.2"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^7.4.1"
+  }
+}
