@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(corsMiddleware);
 
-app.use('/', authRouter);
+app.use('/api', authRouter);
 
 // Optional: proxy PocketBase under /pb to unify frontend base URL
 if (POCKETBASE_URL) {
