@@ -32,7 +32,7 @@ async function ensureRoom(pbAdmin, title) {
   try {
     return await pbAdmin.collection('rooms').getFirstListItem(`title = "${title}"`);
   } catch {
-    return await pbAdmin.collection('rooms').create({ title });
+    return await pbAdmin.collection('rooms').create({ title, createdAtMs: Date.now() });
   }
 }
 

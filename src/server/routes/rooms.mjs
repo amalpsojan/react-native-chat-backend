@@ -32,7 +32,7 @@ router.post('/createRoom', async (req, res) => {
           }
         }
 
-        const room = await adminClient.collection('rooms').create({ title: title.trim() });
+        const room = await adminClient.collection('rooms').create({ title: title.trim(), createdAtMs: Date.now() });
         return res.status(201).json({ room, created: true });
       } catch (err) {
         const code = Number(err?.status) || 500;
@@ -43,7 +43,7 @@ router.post('/createRoom', async (req, res) => {
     // Public fallback: try to create, else try to read
     const pb = createPocketBaseClient();
     try {
-      const room = await pb.collection('rooms').create({ title: title.trim() });
+      const room = await pb.collection('rooms').create({ title: title.trim(), createdAtMs: Date.now() });
       return res.status(201).json({ room, created: true });
     } catch (createErr) {
       const status = Number(createErr?.status) || 0;

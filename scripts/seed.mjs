@@ -25,7 +25,7 @@ async function getOrCreateRoom(title) {
     const room = await pb.collection('rooms').getFirstListItem(`title = "${title}"`);
     return room;
   } catch {
-    return pb.collection('rooms').create({ title });
+    return pb.collection('rooms').create({ title, createdAtMs: Date.now() });
   }
 }
 

@@ -37,6 +37,11 @@ async function ensureRooms() {
     await pb.collections.update(exists.id, {
       listRule: '@request.auth.id != ""',
       viewRule: '@request.auth.id != ""',
+      // Ensure the schema includes createdAtMs
+      fields: [
+        { name: "title", type: "text", required: true },
+        { name: "createdAtMs", type: "number", required: true },
+      ],
     });
     return await getCollectionByName("rooms");
   }
@@ -44,7 +49,10 @@ async function ensureRooms() {
   return pb.collections.create({
     name: "rooms",
     type: "base",
-    fields: [{ name: "title", type: "text", required: true }],
+    fields: [
+      { name: "title", type: "text", required: true },
+      { name: "createdAtMs", type: "number", required: true },
+    ],
     listRule: '@request.auth.id != ""',
     viewRule: '@request.auth.id != ""',
   });
