@@ -1,17 +1,33 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import corsMiddleware from './middleware/cors.mjs';
+import { createProxyMiddleware } from 'http-proxy-middleware';
 import authRouter from './routes/auth.mjs';
 
 dotenv.config();
 
-const { API_PORT } = process.env;
+const { API_PORT, POCKETBASE_URL } = process.env;
 
 const app = express();
 app.use(express.json());
 app.use(corsMiddleware);
 
 app.use('/', authRouter);
+
+// Optional: proxy PocketBase under /pb to unify frontend base URL
+if (POCKETBASE_URL) {
+  app.use(
+    '/pb',
+    createProxyMiddleware({
+      target: POCKETBASE_URL,
+      changeOrigin: true,
+      pathRewrite: {
+        '^/pb': '',
+      },
+      ws: true,
+    })
+  );
+}
 
 const port = Number(API_PORT) || 4000;
 app.listen(port, () => {
