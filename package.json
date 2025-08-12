@@ -8,8 +8,8 @@
     "init:schema": "dotenv -e .env -- node scripts/initPocketBase.mjs",
     "seed": "dotenv -e .env -- node scripts/seed.mjs",
     "api:serve": "dotenv -e .env -- node src/server/index.mjs",
-    "client:alice": "dotenv -e .env -- node scripts/client.mjs alice@example.com secret123 realtime-test",
-    "client:bob": "dotenv -e .env -- node scripts/client.mjs bob@example.com secret123 realtime-test"
+    "client:alice": "dotenv -e .env -- node scripts/client.mjs alice@example.com secret123 123456789012345",
+    "client:bob": "dotenv -e .env -- node scripts/client.mjs bob@example.com secret123 123456789012345"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

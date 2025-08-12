@@ -3,6 +3,7 @@ import express from 'express';
 import corsMiddleware from './middleware/cors.mjs';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import authRouter from './routes/auth.mjs';
+import roomsRouter from './routes/rooms.mjs';
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(corsMiddleware);
 
 app.use('/api', authRouter);
+app.use('/api', roomsRouter);
 
 // Optional: proxy PocketBase under /pb to unify frontend base URL
 if (POCKETBASE_URL) {
